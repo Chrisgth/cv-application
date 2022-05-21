@@ -1,11 +1,13 @@
-import TextInput from "./TextInput";
+import Input from "./Input";
 
 const General = () => {
 	return ( 
 		<div className="general">
 			<h2>General Information</h2>
 			<form action="get" id="generalForm">
-				<TextInput idprop={'fullName'} label={'Full Name'} />
+				<Input type={'text'} idprop={'fullName'} label={'Full Name'} />
+				<Input type={'email'} idprop={'mail'} label={'E-Mail Address'} />
+				<Input type={'tel'} idprop={'num'} label={'Phone Number'} />
 			</form>
 		</div>
 	 );
