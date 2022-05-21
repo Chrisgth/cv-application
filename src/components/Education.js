@@ -39,16 +39,34 @@ const Education = () => {
 		newEduList(newList)
 	}
 
+	let currentEdit = 0
+
 	const editHandler = (id) => {
 		const listItem = eduList[id]
 		const form = document.getElementById('eduForm')
-		console.log(listItem[0])
 
 		form[0].value = listItem.schoolName
 		form[1].value = listItem.studyField
 		form[2].value = listItem.studiedFrom
 		form[3].value = listItem.studiedTil
 
+		currentEdit = id
+
+		console.log(currentEdit)
+	}
+
+	const editEduData = (id) => {
+		const newList = [...eduList]
+		const form = document.getElementById('eduForm')
+
+		console.log(newList[id])
+
+		newList[id].schoolName = form[0].value
+		newList[id].studyField = form[1].value
+		newList[id].studiedFrom = form[2].value
+		newList[id].studiedTil = form[3].value
+
+		newEduList(newList)
 	}
 
 
@@ -68,6 +86,7 @@ const Education = () => {
 			<button className="newdeg">+</button>
 			<EducationForm />
 			<button onClick={() => formDataHandler()}id="getEduData" type="button">Submit</button>
+			<button onClick={() => editEduData(currentEdit)} id="editEduData">Edit</button>
 		</div>
 	 );
 }
