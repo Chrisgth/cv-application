@@ -26,8 +26,6 @@ const Education = () => {
 
 		newList.push(formOutput)
 
-		console.log(newList)
-
 		newEduList(newList)
 	}
 
@@ -59,8 +57,6 @@ const Education = () => {
 		const newList = [...eduList]
 		const form = document.getElementById('eduForm')
 
-		console.log(newList[id])
-
 		newList[id].schoolName = form[0].value
 		newList[id].studyField = form[1].value
 		newList[id].studiedFrom = form[2].value
@@ -69,6 +65,11 @@ const Education = () => {
 		newEduList(newList)
 	}
 
+	const toggleActive = (element) => {
+		element.classList.toggle('active')
+	}
+
+	const eduPopup = document.querySelector('.eduPopup')
 
 	return ( 
 		<div className="education">
@@ -83,10 +84,14 @@ const Education = () => {
 					<button onClick={() => editHandler(education.id)}>Edit</button>
 				</div>
 			))}
-			<button className="newdeg">+</button>
-			<EducationForm />
-			<button onClick={() => formDataHandler()}id="getEduData" type="button">Submit</button>
-			<button onClick={() => editEduData(currentEdit)} id="editEduData">Edit</button>
+			<button onClick={() => toggleActive(eduPopup)}className="newdeg">+</button>
+			<div className="eduPopup">
+				<div className="eduFormContainer">
+					<EducationForm />
+					<button onClick={() => formDataHandler()}id="getEduData" type="button">Submit</button>
+					<button onClick={() => editEduData(currentEdit)} id="editEduData">Edit</button>
+				</div>
+			</div>
 		</div>
 	 );
 }
