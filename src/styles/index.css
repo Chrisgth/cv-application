@@ -35,6 +35,12 @@ button {
   pointer-events: all;
 }
 
+.inactive {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
 .eduFormContainer {
   background-color: white;
 }

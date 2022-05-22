@@ -49,8 +49,7 @@ const Education = () => {
 		form[3].value = listItem.studiedTil
 
 		currentEdit = id
-
-		console.log(currentEdit)
+		
 	}
 
 	const editEduData = (id) => {
@@ -65,11 +64,35 @@ const Education = () => {
 		newEduList(newList)
 	}
 
-	const toggleActive = (element) => {
-		element.classList.toggle('active')
+	const addToggler = () => {
+		const eduPopup = document.querySelector('.eduPopup')
+		const getEduData = document.getElementById('getEduData')
+		const editEduData = document.getElementById('editEduData')
+
+		eduPopup.classList.toggle('active')
+		getEduData.classList.toggle('active')
+		editEduData.classList.toggle('inactive')
 	}
 
-	const eduPopup = document.querySelector('.eduPopup')
+	const editToggler = () => {
+		const eduPopup = document.querySelector('.eduPopup')
+		const getEduData = document.getElementById('getEduData')
+		const editEduData = document.getElementById('editEduData')
+
+		eduPopup.classList.toggle('active')
+		getEduData.classList.toggle('inactive')
+		editEduData.classList.toggle('active')
+	}
+
+	const classRemover = () => {
+		const eduPopup = document.querySelector('.eduPopup')
+		const getEduData = document.getElementById('getEduData')
+		const editEduData = document.getElementById('editEduData')
+
+		eduPopup.classList.toggle('active')
+		getEduData.classList = ''
+		editEduData.classList = ''
+	}
 
 	return ( 
 		<div className="education">
@@ -81,15 +104,18 @@ const Education = () => {
 					<p>Studied From: {education.studiedFrom}</p>
 					<p>Studied Til: {education.studiedTil}</p>
 					<button onClick={() => deleteHandler(education.id)}>X</button>
-					<button onClick={() => editHandler(education.id)}>Edit</button>
+					<button onClick={() => {editHandler(education.id); editToggler()}}>Edit</button>
 				</div>
 			))}
-			<button onClick={() => toggleActive(eduPopup)}className="newdeg">+</button>
+			
+			<button onClick={() => addToggler()}className="newdeg">+</button>
+
 			<div className="eduPopup">
 				<div className="eduFormContainer">
 					<EducationForm />
-					<button onClick={() => formDataHandler()}id="getEduData" type="button">Submit</button>
-					<button onClick={() => editEduData(currentEdit)} id="editEduData">Edit</button>
+					<button onClick={() => {formDataHandler(); addToggler()}} id="getEduData" type="button" className="">Submit</button>
+					<button onClick={() => {editEduData(currentEdit); editToggler()}} id="editEduData" className="">Edit</button>
+					<button onClick={() => classRemover()}>X</button>
 				</div>
 			</div>
 		</div>
